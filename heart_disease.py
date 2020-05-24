@@ -12,8 +12,8 @@ def heart_disease(data_file, iterations=3000, learning_rate=0.1, reg_param=0.1, 
     # Standardize data
     X_train_std, X_cv_std = dproc.standardize(X_train, X_cv)
 
-    activation_layers = (25, 1)
-    parameters = model.init_params(X.T, activation_layers)
+    activation_layers = (X.shape[1], 25, 1)
+    parameters = model.init_params(activation_layers)
 
     model.train_model(X_train_std.T, y_train.T, parameters, iterations, learning_rate, reg_param)
 

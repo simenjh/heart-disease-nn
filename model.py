@@ -2,22 +2,16 @@ import numpy as np
 from scipy.special import expit
 
 
-def init_params(X, activation_layers):
+def init_params(activation_layers):
     params = {}
-    l = 1
-    for n_activation in activation_layers:
-        W = None
-        b = np.zeros((n_activation, 1))
-        if l == 1:
-            W = np.random.randn(n_activation, X.shape[0]) * 0.01
-        else:
-            W = np.random.randn(n_activation, activation_layers[l-2]) * 0.01
-  
-        params[f"W{l}"] = W
-        params[f"b{l}"] = b
-        l += 1
-        
+    L = len(activation_layers)
+    
+    for l in range(1, L):
+        params[f"W{l}"] = np.random.randn(activation_layers[l], activation_layers[l-1]) * np.sqrt(2 / activation_layers[l-1])
+        params[f"b{l}"] = np.zeros((activation_layers[l], 1))
+
     return params
+        
 
 
 
@@ -35,6 +29,7 @@ def train_model(X, y, parameters, iterations, learning_rate, reg_param):
         
         gradients = backprop(AL, y, caches)
         update_parameters(parameters, gradients, learning_rate, reg_param)
+        
     return costs_iterations, parameters
         
 

@@ -1,4 +1,4 @@
-# Heart disease detection through neural network
+# Heart disease detection through neural network 1
 
 This project is a continuation of [Heart disease detection through logistic regression 1](https://github.com/simenjh/heart-disease-regression-1) and [Heart disease detection through logistic regression 2](https://github.com/simenjh/heart-disease-regression-2)
 
